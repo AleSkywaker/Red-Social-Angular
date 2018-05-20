@@ -1,9 +1,10 @@
 'use strict'
 const bcrypt = require('bcrypt-nodejs');
-const mongoosePaginate = require('mongoose-pagination')
-
+const mongoosePaginate = require('mongoose-pagination');
+const fs = require('fs');
+const path = require('path');
 const User = require('../models/user');
-const jwt = require('../services/jwt')
+const jwt = require('../services/jwt');
 
 function home(req, res) {
     res.status(200).send({ mensaje: "Hola Alex Sandro" })
@@ -155,7 +156,43 @@ function updateUser(req, res) {
     })
 }
 
+function uploadImage(req, res) {
+    let userId = req.params.id;
 
+    if (req.files) {
+        let file_path = req.files.image.path;
+        console.log(file_path);
+        let file_split = file_path.split('\\')
+        console.log(file_split);
+        let file_name = file_split[2];
+        console.log(file_name);
+        let ext_split = file_name.split('\.')
+        console.log(ext_split);
+        let file_ext = ext_split[1]
+        console.log(file_ext);
+
+        if (userId != req.user.sub) {
+            removeFilesOfUploads(res, file_path, 'No tienes permisos para actualizar los datos de usuario')
+        }
+        if (file_ext == 'png' || file_ext == 'jpg' || file_ext == 'jpeg' || file_ext == 'gif') {
+            //actualizar documento usuario logeado
+
+
+
+
+        } else {
+            removeFilesOfUploads(res, file_path, 'Extensión no válida')
+        }
+    } else {
+        return res.status(200).send({ message: 'No se ha subido imagenes' })
+    }
+}
+
+function removeFilesOfUploads(res, file, message) {
+    fs.unlink(file, (err) => {
+        return res.status(200).send({ message: message })
+    })
+}
 
 
 module.exports = {
@@ -165,5 +202,6 @@ module.exports = {
     loginUser,
     getUser,
     getUsers,
-    updateUser
+    updateUser,
+    uploadImage
 }
