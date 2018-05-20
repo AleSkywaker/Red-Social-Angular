@@ -172,7 +172,7 @@ function uploadImage(req, res) {
         console.log(file_ext);
 
         if (userId != req.user.sub) {
-            removeFilesOfUploads(res, file_path, 'No tienes permisos para actualizar los datos de usuario')
+            return removeFilesOfUploads(res, file_path, 'No tienes permisos para actualizar los datos de usuario')
         }
         if (file_ext == 'png' || file_ext == 'jpg' || file_ext == 'jpeg' || file_ext == 'gif') {
             //actualizar documento usuario logeado
@@ -188,7 +188,7 @@ function uploadImage(req, res) {
 
 
         } else {
-            removeFilesOfUploads(res, file_path, 'Extensión no válida')
+            return removeFilesOfUploads(res, file_path, 'Extensión no válida')
         }
     } else {
         return res.status(200).send({ message: 'No se ha subido imagenes' })
