@@ -176,7 +176,14 @@ function uploadImage(req, res) {
         }
         if (file_ext == 'png' || file_ext == 'jpg' || file_ext == 'jpeg' || file_ext == 'gif') {
             //actualizar documento usuario logeado
+            User.findByIdAndUpdate(userId, { image: file_name }, { new: true }, (err, userUpdated) => {
+                if (err) return res.status(500).send({ message: 'Error en la peticion' })
 
+                if (!userUpdated) return res.status(404).send({ message: 'No se ha podido actualizar el usuario' })
+
+                return res.status(200).send({ user: userUpdated })
+
+            })
 
 
 
