@@ -1,7 +1,7 @@
 'use strict'
 
-const mongoose = require('moongose');
-const Schema = moongose.Schema;
+const mongoose = require('mongoose');
+const Schema = mongoose.Schema;
 
 const PublicationSchema = Schema({
     text: String,
@@ -10,4 +10,4 @@ const PublicationSchema = Schema({
     user: { type: Schema.ObjectId, ref: 'User' }
 })
 
-module.exports = moongose.model('Publication', PublicationSchema)
+module.exports = mongoose.model('Publication', PublicationSchema)
