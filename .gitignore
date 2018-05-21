@@ -1,6 +1,6 @@
 node_modules/
 config.js
-api/uploads/users/*.jpg
-api/uploads/users/*.jpeg
-api/uploads/users/*.gif
-api/uploads/users/*.png
+*.jpg
+*.jpeg
+*.gif
+*.png
