@@ -4,6 +4,7 @@ const mongoosePaginate = require('mongoose-pagination');
 const fs = require('fs');
 const path = require('path');
 const User = require('../models/user');
+const Follow = require('../models/follow');
 const jwt = require('../services/jwt');
 
 function home(req, res) {
@@ -100,17 +101,36 @@ function loginUser(req, res) {
 
 //Conseguir datos de un usuario
 function getUser(req, res) {
-    // Cuando recibimos datos por url usamos params, cuando lo hacemos por post o put usamos body
-
-    let userId = req.params.id;
+    var userId = req.params.id; // Cuando recibimos datos por url usamos params, cuando lo hacemos por post o put usamos body
 
     User.findById(userId, (err, user) => {
         if (err) return res.status(500).send({ message: 'Error en la peticion' })
 
         if (!user) return res.status(404).send({ message: 'usuario no existe' })
 
-        return res.status(200).send({ user })
+        followThisUser(req.user.sub, userId).then((value) => {
+            return res.status(200).send({
+                user,
+                following: value.following,
+                followed: value.followed
+            })
+        })
     })
+}
+
+async function followThisUser(identity_user_id, user_id) {
+    var following = await Follow.findOne({ "user": identity_user_id, "followed": user_id }).exec()
+        .then((following) => {
+            return following;
+        })
+    var followed = await Follow.findOne({ "user": user_id, "followed": identity_user_id }).exec()
+        .then((followed) => {
+            return followed
+        })
+    return {
+        following: following,
+        followed: followed
+    }
 }
 
 function getUsers(req, res) {
