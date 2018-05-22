@@ -109,6 +109,7 @@ function getUser(req, res) {
         if (!user) return res.status(404).send({ message: 'usuario no existe' })
 
         followThisUser(req.user.sub, userId).then((value) => {
+            user.password = undefined;
             return res.status(200).send({
                 user,
                 following: value.following,
@@ -149,12 +150,67 @@ function getUsers(req, res) {
 
         if (!users) return res.status(404).send({ message: 'No hay usuarios disponibles' })
 
-        return res.status(200).send({
-            users,
-            total,
-            pages: Math.ceil(total / itemsPerPage)
+        followUserIds(identity_user_id).then((value) => {
+
+            return res.status(200).send({
+                users,
+                users_following: value.following,
+                users_follow_me: value.followed,
+                total,
+                pages: Math.ceil(total / itemsPerPage)
+            })
         })
     })
+}
+
+async function followUserIds(user_id) {
+    var following = await Follow.find({ "user": user_id }).select({ '_id': 0, '__V': 0, 'user': 0 }).exec()
+        .then((follow) => {
+            var follows_clean = []
+            follow.forEach((f) => {
+                follows_clean.push(f.followed)
+            })
+            return follows_clean
+        })
+    var followed = await Follow.find({ "followed": user_id }).select({ '_id': 0, '__V': 0, 'followed': 0 }).exec()
+        .then((follow) => {
+            var follows_clean = []
+            follow.forEach((f) => {
+                follows_clean.push(f.user)
+            })
+            return follows_clean
+        })
+
+    return {
+        following: following,
+        followed: followed
+    }
+}
+
+function getCounters(req, res) {
+    var userId = req.user.sub;
+    if (req.params.id) {
+        userId = req.params.id;
+    }
+    getCountFollow(userId).then((value) => {
+        return res.status(200).send(value);
+    })
+}
+
+async function getCountFollow(user_id) {
+    let following = await Follow.count({ "user": user_id }).exec()
+        .then((count) => {
+            return count;
+        })
+    let followed = await Follow.count({ "followed": user_id }).exec()
+        .then((count) => {
+            return count;
+        })
+
+    return {
+        following: following,
+        followed: followed
+    }
 }
 
 function updateUser(req, res) {
@@ -241,6 +297,7 @@ module.exports = {
     loginUser,
     getUser,
     getUsers,
+    getCounters,
     updateUser,
     uploadImage,
     getImages
