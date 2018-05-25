@@ -42,14 +42,24 @@ function getPublications(req, res) {
     let itemsPerPage = 4;
 
     Follow.find({ user: req.user.sub }).populate('followed').exec((err, follows) => {
-        if (err) return res.status(200).send({ message: "Error al devolver los seguidores" })
+        if (err) return res.status(500).send({ message: "Error al devolver los seguidores" })
 
         let followsClean = []
         follows.forEach((follow) => {
             followsClean.push(follow.followed)
         })
-        return res.status(200).send({ fo: followsClean })
-        console.log(followsClean);
+
+        Publication.find({ user: { "$in": followsClean } }).sort('created_at').populate('user')
+            .paginate(page, itemsPerPage, (err, publications, total) => {
+                if (err) return res.status(500).send({ message: "Error al devolver publicaciones" })
+                if (!publications) return res.status(404).send({ message: 'No hay publicaciones' })
+                return res.status(200).send({
+                    total_items: total,
+                    pages: Math.ceil(total / itemsPerPage),
+                    page: page,
+                    publications
+                })
+            })
     })
     let userId = req.user.sub;
 
