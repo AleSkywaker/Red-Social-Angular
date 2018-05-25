@@ -11,5 +11,6 @@ const md_upload = multipart({ uploadDir: './uploads/publications' })
 
 api.get('/probando', md_auth.ensureAuth, PublicationController.probando)
 api.post('/publicar', md_auth.ensureAuth, PublicationController.savePublication)
+api.get('/seguidores', md_auth.ensureAuth, PublicationController.getPublications)
 
 module.exports = api;
