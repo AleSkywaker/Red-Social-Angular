@@ -10,10 +10,6 @@ const User = require('../models/user')
 const Follow = require('../models/follow')
 
 
-function probando(req, res) {
-    return res.status(200).send({ message: "Hola Hola" })
-}
-
 function savePublication(req, res) {
     let params = req.body;
 
@@ -61,12 +57,20 @@ function getPublications(req, res) {
                 })
             })
     })
-    let userId = req.user.sub;
+}
 
+function getPublication(req, res) {
+    let publicationId = req.params.id;
+
+    Publication.findById(publicationId, (err, publication) => {
+        if (err) return res.status(500).send({ message: "Error al devolver publicacion" })
+        if (!publication) return res.status(404).send({ message: 'No existe la publicacion' })
+        return res.status(200).send({ publication })
+    })
 }
 
 module.exports = {
-    probando,
     savePublication,
-    getPublications
+    getPublications,
+    getPublication
 }
