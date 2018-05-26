@@ -3,9 +3,11 @@ const bcrypt = require('bcrypt-nodejs');
 const mongoosePaginate = require('mongoose-pagination');
 const fs = require('fs');
 const path = require('path');
+
 const User = require('../models/user');
 const Follow = require('../models/follow');
 const jwt = require('../services/jwt');
+const Publication = require('../models/publication');
 
 function home(req, res) {
     res.status(200).send({ mensaje: "Hola Alex Sandro" })
@@ -206,10 +208,15 @@ async function getCountFollow(user_id) {
         .then((count) => {
             return count;
         })
+    let publications = await Publication.count({ "user": user_id }).exec()
+        .then((count) => {
+            return count;
+        })
 
     return {
         following: following,
-        followed: followed
+        followed: followed,
+        publications: publications
     }
 }
 
