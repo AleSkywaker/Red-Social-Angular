@@ -69,8 +69,18 @@ function getPublication(req, res) {
     })
 }
 
+function deletePublication(req, res) {
+    let publicationId = req.params.id;
+
+    Publication.find({ "user": req.user.sub, "_id": publicationId }).remove((err) => {
+        if (err) return res.status(500).send({ message: "Error al eliminar publicacion" })
+        return res.status(200).send({ message: "La publicacion ha sido eliminada" })
+    })
+}
+
 module.exports = {
     savePublication,
     getPublications,
-    getPublication
+    getPublication,
+    deletePublication
 }
