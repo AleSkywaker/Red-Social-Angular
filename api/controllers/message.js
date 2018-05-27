@@ -17,6 +17,7 @@ function saveMessage(req, res) {
     message.receiver = params.receiver;
     message.text = params.text;
     message.create_at = moment().unix();
+    message.viewed = 'false';
 
     message.save((err, messageStored) => {
         if (err) return res.status(500).send({ message: 'Error en la peticion' })
@@ -61,9 +62,21 @@ function getEmitedMessage(req, res) {
     })
 }
 
+function getUnviewedMessages(req, res) {
+    let userId = req.user.sub;
+
+    Message.count({ receiver: userId, viewed: 'false' }).exec((err, count) => {
+        if (err) return res.status(500).send({ message: "Error en la peticion" })
+        return res.status(200).send({
+            'unviewed': count
+        })
+    })
+}
+
 
 module.exports = {
     saveMessage,
     getReceivedMessage,
-    getEmitedMessage
+    getEmitedMessage,
+    getUnviewedMessages
 }
