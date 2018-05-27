@@ -73,10 +73,22 @@ function getUnviewedMessages(req, res) {
     })
 }
 
+function setViewedMessages(req, res) {
+    let userId = req.user.sub;
+
+    Message.update({ receiver: userId, viewed: 'false' }, { viewed: "true" }, { "multi": true }, (err, messageUpdated) => {
+        if (err) return res.status(500).send({ message: "Error en la peticion" })
+        if (!messageUpdated) return res.status(404).send({ message: "No se ha actualiazado el documento" })
+
+        return res.status(200).send({ messages: messageUpdated })
+    })
+}
+
 
 module.exports = {
     saveMessage,
     getReceivedMessage,
     getEmitedMessage,
-    getUnviewedMessages
+    getUnviewedMessages,
+    setViewedMessages
 }
