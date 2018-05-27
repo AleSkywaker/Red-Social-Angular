@@ -10,6 +10,7 @@ api.post('/guardar-message', md_auth.ensureAuth, MessageController.saveMessage)
 api.get('/trae-message/:page?', md_auth.ensureAuth, MessageController.getReceivedMessage)
 api.get('/messages-emitidos/:page?', md_auth.ensureAuth, MessageController.getEmitedMessage)
 api.get('/messages-noleidos', md_auth.ensureAuth, MessageController.getUnviewedMessages)
+api.get('/set-noleidos', md_auth.ensureAuth, MessageController.setViewedMessages)
 
 
 module.exports = api;
