@@ -43,8 +43,27 @@ function getReceivedMessage(req, res) {
     })
 }
 
+function getEmitedMessage(req, res) {
+    let userId = req.user.sub;
+    let page = 1;
+    if (req.params.page) {
+        page = req.params.page;
+    }
+    let itemsPerPage = 4;
+    Message.find({ emiter: userId }).populate('emiter receiver', 'name surname _id nick image').paginate(page, itemsPerPage, (err, messages, total) => {
+        if (err) return res.status(500).send({ message: 'Error en la peticion' })
+        if (!messages) return res.status(404).send({ message: "No hay mensajes" })
+        return res.status(200).send({
+            total: total,
+            pages: Math.ceil(total / itemsPerPage),
+            messages
+        })
+    })
+}
+
 
 module.exports = {
     saveMessage,
-    getReceivedMessage
+    getReceivedMessage,
+    getEmitedMessage
 }
