@@ -7,6 +7,7 @@ const md_auth = require('../middlewares/authentication')
 
 
 api.post('/guardar-message', md_auth.ensureAuth, MessageController.saveMessage)
+api.get('/trae-message/:page?', md_auth.ensureAuth, MessageController.getReceivedMessage)
 
 
 module.exports = api;
