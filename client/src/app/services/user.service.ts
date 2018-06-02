@@ -21,4 +21,15 @@ export class UserService {
       headers: headers
     });
   }
+
+  signup(user: User, gettoken = null) {
+    if (gettoken != null) {
+      user.gettoken = gettoken;
+    }
+
+    let params = JSON.stringify(user);
+    let headers = new HttpHeaders().set("Content-type", "application/json");
+
+    return this._http.post(this.url + "/login", params, { headers: headers });
+  }
 }
