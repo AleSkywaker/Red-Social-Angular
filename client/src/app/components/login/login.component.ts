@@ -12,7 +12,7 @@ export class LoginComponent implements OnInit {
   public titulo: string;
   public user: User;
   public status: string;
-  public identity;
+  public identity: any;
   public token;
   public name;
 
@@ -22,7 +22,7 @@ export class LoginComponent implements OnInit {
     private _userService: UserService
   ) {
     this.titulo = "Identificate";
-    this.user = new User("", "", "", "", "", "ROLE_USER", "", "");
+    this.user = new User("", "", "", "", "", "ROLE_USER", "");
   }
 
   ngOnInit() {
@@ -32,6 +32,7 @@ export class LoginComponent implements OnInit {
     //llamar al usuario y conseguir los datos
     this._userService.signup(this.user).subscribe(
       response => {
+        console.log(response);
         this.identity = response.user;
         console.log(this.identity);
         this.name = response.user.name;
@@ -39,10 +40,13 @@ export class LoginComponent implements OnInit {
           this.status = "error";
         } else {
           this.status = "success";
-          //Persistir datos del usuario
+          //Persistir datos del usuario en localStorage
+          localStorage.setItem("identity", JSON.stringify(this.identity));
 
           //Conseguir tokken
           this.getToken();
+
+          this._router.navigate(["/"]);
         }
       },
       error => {
@@ -53,13 +57,14 @@ export class LoginComponent implements OnInit {
         }
       }
     );
-    // console.log(this.user);subscribessubscribe
   }
 
   getToken() {
     this._userService.signup(this.user, "true").subscribe(
       response => {
+        console.log(response);
         this.token = response.token;
+        localStorage.setItem("token", JSON.stringify(this.token));
         console.log(this.token);
         if (this.token <= 0) {
           this.status = "error";
