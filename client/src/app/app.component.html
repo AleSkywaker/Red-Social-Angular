@@ -3,12 +3,12 @@
         <div class="container-fluid">
 
             <div class="navbar-header">
-                <a href="#" class="navbar-brand">{{titulo}}</a>
+                <a [routerLink]="['/inicio']" class="navbar-brand">{{titulo}}</a>
             </div>
 
-            <ul class="nav navbar-nav">
+            <ul class="nav navbar-nav" *ngIf="identity">
                 <li>
-                    <a href="#">
+                    <a [routerLink]="['/home']" [routerLinkActive]="['active']">
                         <span class="glyphicon glyphicon-home"> Inicio</span>
                     </a>
                 </li>
@@ -23,6 +23,47 @@
                     </a>
                 </li>
             </ul>
+
+
+            <ul class="nav navbar-nav navbar-right" *ngIf="!identity">
+                <li>
+                    <a [routerLink]="['/login']" [routerLinkActive]="['active']">
+                        <span class="glyphicon glyphicon-log-in"> Login</span>
+                    </a>
+                </li>
+                <li>
+                    <a [routerLink]="['/registro']" [routerLinkActive]="['active']">
+                        <span class="glyphicon glyphicon-user"> Registro</span>
+                    </a>
+                </li>
+            </ul>
+            <ul class="nav navbar-nav navbar-right" *ngIf="identity">
+                <li class="avatar">
+                    <!-- cargar imagen de usaurio -->
+                </li>
+                <li class="dropdpwn">
+                    <a class="dropdown-toggle" data-toggle="dropdown" href="#">{{identity.name}}
+            <span class="caret"></span>
+          </a>
+                    <ul class="dropdown-menu">
+                        <li>
+                            <a href="#">
+                                <span class="glyphicon glyphicon-user"></span> Mi perfil</a>
+                        </li>
+                        <li>
+                            <a href="#">
+                                <span class="glyphicon glyphicon-cog"></span> Mis datos</a>
+                        </li>
+                        <li>
+                            <a class="pointer" (click)="logout()">
+                                <span class="glyphicon glyphicon-log-out"></span> cerrar session</a>
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+
+
+
 
         </div>
     </nav>
