@@ -6,7 +6,6 @@ export class User {
     public nick: String,
     public password: String,
     public role: String,
-    public image: String,
-    public gettoken: any
+    public image: String
   ) {}
 }
