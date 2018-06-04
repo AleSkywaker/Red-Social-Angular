@@ -6,6 +6,7 @@ import { User } from "../models/user";
 
 @Injectable()
 export class UserService {
+  public stats: any;
   public url;
   public identity;
   public token;
@@ -54,5 +55,30 @@ export class UserService {
       this.token = null;
     }
     return this.token;
+  }
+  getStats() {
+    let stats = JSON.parse(localStorage.getItem("stats"));
+
+    if (stats != "undefined") {
+      this.stats = stats;
+    } else {
+      this.stats = null;
+    }
+
+    return this.stats;
+  }
+
+  getCounter(userId = null): Observable<any> {
+    let headers = new HttpHeaders()
+      .set("Content-type", "application/json")
+      .set("Authorization", this.getToken());
+
+    if (userId != null) {
+      return this._http.get(this.url + "/counter/" + userId, {
+        headers: headers
+      });
+    } else {
+      return this._http.get(this.url + "/counter/", { headers: headers });
+    }
   }
 }
