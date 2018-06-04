@@ -32,21 +32,39 @@ export class LoginComponent implements OnInit {
     //llamar al usuario y conseguir los datos
     this._userService.signup(this.user).subscribe(
       response => {
-        console.log(response);
         this.identity = response.user;
-        console.log(this.identity);
         this.name = response.user.name;
         if (!this.identity || !this.identity._id) {
           this.status = "error";
         } else {
-          this.status = "success";
           //Persistir datos del usuario en localStorage
           localStorage.setItem("identity", JSON.stringify(this.identity));
 
           //Conseguir tokken
           this.getToken();
+        }
+      },
+      error => {
+        let errorMessage = <any>error;
+        if (errorMessage != null) {
+          this.status = "error";
+        }
+      }
+    );
+  }
 
-          this._router.navigate(["/"]);
+  getToken() {
+    this._userService.signup(this.user, "true").subscribe(
+      response => {
+        this.token = response.token;
+        localStorage.setItem("token", JSON.stringify(this.token));
+        if (this.token <= 0) {
+          this.status = "error";
+        } else {
+          //Persistir el toeken del usuario
+
+          //Conseguir contadores o estadisticas del usuario
+          this.getCounters();
         }
       },
       error => {
@@ -59,28 +77,15 @@ export class LoginComponent implements OnInit {
     );
   }
 
-  getToken() {
-    this._userService.signup(this.user, "true").subscribe(
+  getCounters() {
+    this._userService.getCounter().subscribe(
       response => {
-        console.log(response);
-        this.token = response.token;
-        localStorage.setItem("token", JSON.stringify(this.token));
-        console.log(this.token);
-        if (this.token <= 0) {
-          this.status = "error";
-        } else {
-          this.status = "success";
-          //Persistir el toeken del usuario
-
-          //Conseguir contadores o estadisticas del usuario
-        }
+        localStorage.setItem("stats", JSON.stringify(response));
+        this.status = "success";
+        this._router.navigate(["/"]);
       },
       error => {
-        let errorMessage = <any>error;
-        console.log(errorMessage);
-        if (errorMessage != null) {
-          this.status = "error";
-        }
+        console.log(<any>error);
       }
     );
   }
