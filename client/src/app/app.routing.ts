@@ -5,6 +5,7 @@ import { Routes, RouterModule } from "@angular/router";
 import { LoginComponent } from "../app/components/login/login.component";
 import { RegisterComponent } from "../app/components/register/register.component";
 import { HomeComponent } from "../app/components/home/home.component";
+import { UserEditComponent } from "../app/components/user-edit/user-edit.component";
 
 const appRoutes: Routes = [
   { path: "", component: HomeComponent },
@@ -12,6 +13,7 @@ const appRoutes: Routes = [
   { path: "home", component: HomeComponent },
   { path: "login", component: LoginComponent },
   { path: "registro", component: RegisterComponent },
+  { path: "mis-datos", component: UserEditComponent },
   { path: "**", component: HomeComponent }
 ];
 
