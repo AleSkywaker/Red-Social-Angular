@@ -81,4 +81,17 @@ export class UserService {
       return this._http.get(this.url + "/counter/", { headers: headers });
     }
   }
+
+  updateUser(user): Observable<any> {
+    let params = JSON.stringify(user);
+    let headers = new HttpHeaders()
+      .set("Content-type", "application/json")
+      .set("Authorization", this.getToken());
+
+    return this._http.put(
+      this.url + "/actualizar-usuario/" + user._id,
+      params,
+      { headers: headers }
+    );
+  }
 }
