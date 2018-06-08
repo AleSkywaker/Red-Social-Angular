@@ -3,6 +3,7 @@ import { ActivatedRoute, Params, Router } from "@angular/router";
 import { User } from "./../../models/follow";
 import { UserService } from "../../services/user.service";
 import { UploadService } from './../../services/upload.service';
+import { GLOBAL } from '../../services/global';
 
 
 @Component({
@@ -12,10 +13,11 @@ import { UploadService } from './../../services/upload.service';
 })
 export class UserEditComponent implements OnInit {
   public titulo: string;
-  public user: User;
+  public user: any;
   public identity;
   public token;
   public status;
+  public url;
 
   constructor(
     private _router: ActivatedRoute,
@@ -27,6 +29,7 @@ export class UserEditComponent implements OnInit {
     this.user = this._userService.getIdentity();
     this.identity = this.user;
     this.token = this._userService.getToken();
+    this.url = GLOBAL.url;
   }
 
   ngOnInit() {
@@ -46,6 +49,12 @@ export class UserEditComponent implements OnInit {
           this.identity = this.user;
 
           //Subida imagen de usuario
+          this._uploadService.makeFileRequest(this.url + '/upload-image-user/' + this.user._id, [], this.filesToUpload, this.token, 'image')
+            .then((result: any) => {
+              console.log(result)
+              this.user.image = result.user.image;
+              localStorage.setItem('identity', JSON.stringify(this.user))
+            })
         }
       },
       error => {
