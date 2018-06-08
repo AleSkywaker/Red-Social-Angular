@@ -2,11 +2,13 @@ import { Component, OnInit } from "@angular/core";
 import { ActivatedRoute, Params, Router } from "@angular/router";
 import { User } from "./../../models/follow";
 import { UserService } from "../../services/user.service";
+import { UploadService } from './../../services/upload.service';
+
 
 @Component({
   selector: "user-edit",
   templateUrl: "./user-edit.component.html",
-  providers: [UserService]
+  providers: [UserService, UploadService]
 })
 export class UserEditComponent implements OnInit {
   public titulo: string;
@@ -18,7 +20,8 @@ export class UserEditComponent implements OnInit {
   constructor(
     private _router: ActivatedRoute,
     private _route: Router,
-    private _userService: UserService
+    private _userService: UserService,
+    private _uploadService: UploadService
   ) {
     this.titulo = "Actualizar mis datos";
     this.user = this._userService.getIdentity();
@@ -53,5 +56,10 @@ export class UserEditComponent implements OnInit {
         }
       }
     );
+  }
+  public filesToUpload: Array<File>;
+  fileChangeEvent(fileInput: any) {
+    this.filesToUpload = <Array<File>>fileInput.target.files;
+    console.log(this.filesToUpload)
   }
 }
