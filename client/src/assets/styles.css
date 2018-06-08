@@ -58,8 +58,26 @@
     background-color: #ab0a0a !important;
 }
 
+.navigation .avatar {
+    width: 35px;
+    height: 35px;
+    border-radius: 100px;
+    overflow: hidden;
+    margin-top: 10px;
+    margin-right: 10px;
+}
+
+.navigation .avatar img {
+    height: auto;
+    width: 55px;
+}
+
 .jumbotron {
     padding: 25px;
     border-radius: 5px;
     text-align: center;
+}
+
+.imagenTemporal {
+    width: 15%;
 }
