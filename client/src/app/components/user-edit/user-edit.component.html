@@ -38,6 +38,11 @@
       </span>
         </p>
 
+        <div *ngIf="user.image">
+            <img class="imagenTemporal" src="{{url + '/get-image/' + user.image}}" />
+
+        </div>
+
         <p>
             <label>Sube tu avatar</label>
             <input type="file" placeholder="Subir imagen" (change)="fileChangeEvent($event)">
