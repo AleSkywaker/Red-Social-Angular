@@ -94,4 +94,18 @@ export class UserService {
       { headers: headers }
     );
   }
+
+  getUsers(page = null): Observable<any> {
+    let headers = new HttpHeaders().set('Content-Type', 'application/json')
+      .set('Authorization', this.getToken())
+
+    return this._http.get(this.url + '/usuarios/' + page, { headers: headers })
+  }
+
+  getUser(id): Observable<any> {
+    let headers = new HttpHeaders().set('Content-Type', 'application/json')
+      .set('Authorization', this.getToken())
+
+    return this._http.get(this.url + '/usuario/' + id, { headers: headers })
+  }
 }
