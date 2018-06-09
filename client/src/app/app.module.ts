@@ -10,6 +10,7 @@ import { LoginComponent } from "../app/components/login/login.component";
 import { RegisterComponent } from "../app/components/register/register.component";
 import { HomeComponent } from "../app/components/home/home.component";
 import { UserEditComponent } from './components/user-edit/user-edit.component';
+import { UserComponent } from './components/users/users.component';
 
 @NgModule({
   declarations: [
@@ -17,10 +18,11 @@ import { UserEditComponent } from './components/user-edit/user-edit.component';
     LoginComponent,
     RegisterComponent,
     HomeComponent,
-    UserEditComponent
+    UserEditComponent,
+    UserComponent
   ],
   imports: [BrowserModule, FormsModule, routing, HttpClientModule],
   providers: [appRoutingProviders],
   bootstrap: [AppComponent]
 })
-export class AppModule {}
+export class AppModule { }
