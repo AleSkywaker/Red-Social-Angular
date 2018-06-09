@@ -15,6 +15,13 @@ export class UserComponent implements OnInit {
   public titulo: String;
   public identity;
   public token;
+  public page;
+  public next_page;
+  public prev_page;
+  public status;
+  public pages;
+  public total;
+  public users: Array<User>;
 
   constructor(
     private _route: ActivatedRoute,
@@ -27,9 +34,53 @@ export class UserComponent implements OnInit {
   }
 
   ngOnInit() {
-    console.log('User.componente ha sido cargado')
+    console.log('User.componente ha sido cargado');
+    this.actualPage();
   }
 
+  actualPage() {
+    this._route.params.subscribe(params => {
+      let page = +params['page'];
+      this.page = page;
+
+      if (!page) {
+        page = 1;
+      } else {
+        this.next_page = page + 1;
+        this.prev_page = page - 1;
+        this.prev_page <= 0 ? this.prev_page = 1 : this.prev_page;
+      }
+      //Devolver listado de usuarios
+      this.getUsers(page);
+    })
+  }
+
+  getUsers(page) {
+    this._userService.getUsers(page).subscribe(
+      response => {
+        if (!response.users) {
+          this.status = 'error';
+        } else {
+          console.log(response.users);
+          this.total = response.total;
+          this.users = response.users;
+          this.pages = response.pages;
+
+          if (page > this.pages) {
+            this._router.navigate(['/usuarios', 1])
+          }
+
+        }
+      }, error => {
+        var errorMessage = <any>error;
+        console.log(errorMessage);
+
+        if (errorMessage != null) {
+          this.status = 'error';
+        }
+      }
+    )
+  }
 
 }
 
