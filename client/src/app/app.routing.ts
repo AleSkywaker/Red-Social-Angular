@@ -6,6 +6,7 @@ import { LoginComponent } from "../app/components/login/login.component";
 import { RegisterComponent } from "../app/components/register/register.component";
 import { HomeComponent } from "../app/components/home/home.component";
 import { UserEditComponent } from "../app/components/user-edit/user-edit.component";
+import { UserComponent } from './components/users/users.component';
 
 const appRoutes: Routes = [
   { path: "", component: HomeComponent },
@@ -14,6 +15,7 @@ const appRoutes: Routes = [
   { path: "login", component: LoginComponent },
   { path: "registro", component: RegisterComponent },
   { path: "mis-datos", component: UserEditComponent },
+  { path: "usuarios", component: UserComponent },
   { path: "**", component: HomeComponent }
 ];
 
