@@ -81,3 +81,33 @@
 .imagenTemporal {
     width: 15%;
 }
+
+.item-user .image-user {
+    width: 55px;
+    height: 55px;
+    border-radius: 100px;
+    overflow: hidden;
+    margin-right: 20px;
+}
+
+.item-user .image-user img {
+    height: auto;
+    width: 150px;
+}
+
+.item-user .user-name {
+    margin-top: 3px;
+}
+
+.item-user .user-name .nickname {
+    color: gray;
+}
+
+.item-user .user-name .name-surname a {
+    color: #444;
+    font-weight: bold;
+}
+
+.avatar-default {
+    width: 100% !important;
+}
