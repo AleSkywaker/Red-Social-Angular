@@ -23,6 +23,7 @@ export class UserComponent implements OnInit {
   public total;
   public users: Array<User>;
   public url;
+  public follows;
 
   constructor(
     private _route: ActivatedRoute,
@@ -71,7 +72,7 @@ export class UserComponent implements OnInit {
           this.total = response.total;
           this.users = response.users;
           this.pages = response.pages;
-
+          this.follows = response.users_following;
           if (page > this.pages) {
             this._router.navigate(['/usuarios', 1])
           }
@@ -86,6 +87,16 @@ export class UserComponent implements OnInit {
         }
       }
     )
+  }
+
+  public followUserOver;
+  mouseEnter(user_id) {
+    console.log("enter");
+    this.followUserOver = user_id;
+  }
+  mouseLeave(user_id) {
+    console.log("salir");
+    this.followUserOver = 0;
   }
 
 }
