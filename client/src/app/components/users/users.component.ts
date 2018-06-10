@@ -22,6 +22,7 @@ export class UserComponent implements OnInit {
   public pages;
   public total;
   public users: Array<User>;
+  public url;
 
   constructor(
     private _route: ActivatedRoute,
@@ -31,6 +32,7 @@ export class UserComponent implements OnInit {
     this.titulo = "Gente";
     this.identity = this._userService.getIdentity();
     this.token = this._userService.getToken();
+    this.url = GLOBAL.url;
   }
 
   ngOnInit() {
@@ -42,6 +44,10 @@ export class UserComponent implements OnInit {
     this._route.params.subscribe(params => {
       let page = +params['page'];
       this.page = page;
+
+      if (!params['page']) {
+        page = 1;
+      }
 
       if (!page) {
         page = 1;
