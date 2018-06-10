@@ -1,3 +1,40 @@
 <div class="col-lg-8">
     <h1 class="h1-strong">{{titulo}}</h1>
+
+    <!-- LISTADO -->
+
+    <div class="people">
+        <div *ngFor="let user of users" class="item-user">
+            <div class="panel panel-default">
+                <div class="panel-body">
+                    <div class="image-user pull-left">
+                        <a href="">
+                            <img src="{{url + '/get-image/' + user.image}}" *ngIf="user.image" />
+                            <img src="assets/images/ninja.png" class="avatar-default" *ngIf="!user.image" />
+                        </a>
+                    </div>
+
+
+                    <div class="user-name pull-left">
+                        <p class="name-surname">
+                            <a href="">{{user.name + user.surname}}</a>
+                        </p>
+                        <p class="nickname">
+                            {{user.nick}}
+                        </p>
+                    </div>
+                    <!-- SEGUIR O DEJAR DE SEGUIR -->
+                </div>
+            </div>
+        </div>
+        <!-- PAGINATION -->
+        <ul class="pagination pull-right">
+            <li *ngIf='page > 1'>
+                <a [routerLink]="['/usuarios', prev_page]">Anterior {{page}}</a>
+            </li>
+            <li *ngIf='pages != page'>
+                <a [routerLink]="['/usuarios', next_page]">Siguiente {{page}}</a>
+            </li>
+        </ul>
+    </div>
 </div>
