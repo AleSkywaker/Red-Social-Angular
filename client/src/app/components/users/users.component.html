@@ -13,8 +13,6 @@
                             <img src="assets/images/ninja.png" class="avatar-default" *ngIf="!user.image" />
                         </a>
                     </div>
-
-
                     <div class="user-name pull-left">
                         <p class="name-surname">
                             <a href="">{{user.name + user.surname}}</a>
@@ -24,11 +22,11 @@
                         </p>
                     </div>
                     <!-- SEGUIR O DEJAR DE SEGUIR -->
-                    <div class="pull-right">
-                        <button class="btn btn-success" *ngIf="follows.indexOf(user._id) < 0">
+                    <div class="pull-right" *ngIf="user._id != identity._id">
+                        <button class="btn btn-success" *ngIf="follows.indexOf(user._id) < 0" (click)="followUser(user._id)">
               <i class="fas fa-thumbs-up"></i> Seguir</button>
 
-                        <button class="btn btn-primary" *ngIf="follows.indexOf(user._id) >= 0" (mouseenter)="mouseEnter(user._id)" (mouseleave)="mouseLeave(user._id)" [class.btn-danger]="user._id == followUserOver">
+                        <button class="btn btn-primary" *ngIf="follows.indexOf(user._id) >= 0" (mouseenter)="mouseEnter(user._id)" (mouseleave)="mouseLeave(user._id)" [class.btn-danger]="user._id == followUserOver" (click)="unfollowUser(user._id)">
               <span *ngIf="user._id == followUserOver; else following">
                 <i class="fas fa-thumbs-down"></i> Dejar de seguir
               </span>
@@ -54,3 +52,5 @@
         </ul>
     </div>
 </div>
+<sidebar></sidebar>
+<div class="clearfix"></div>
