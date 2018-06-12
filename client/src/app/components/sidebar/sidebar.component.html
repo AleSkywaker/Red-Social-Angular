@@ -1,11 +1,17 @@
+<div class="col-lg-4 sidebar-32">
+    <h1 class="h1-strong">Datos de {{identity.name}}</h1>
+</div>
+
+
+
 <div id="user-card" class="col-lg-4 panel panel-default pull-left box-default">
-    <div class="avatar">
-        <img class="imagenTemporal" src="{{url + '/get-image/' + identity.image}}" *ngIf="identity.name" />
+    <div class="avatar pull-left">
+        <img src="{{url + '/get-image/' + identity.image}}" *ngIf="identity.name" />
         <img src="assets/images/ninja.png" *ngIf="!identity.name" />
     </div>
 
-    <div class="name-surname">
-        <a href="">
+    <div class="name-surname pull-left">
+        <a href="" class="username">
       {{identity.name + ' ' + identity.surname}}
     </a>
         <p class="nickname">{{identity.nick}}</p>
@@ -48,3 +54,5 @@
         </div>
     </div>
 </div>
+
+<!-- formulario de publicaciones -->
