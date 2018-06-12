@@ -114,7 +114,8 @@
 
 /* Sidebar */
 
-#user-card {
+#user-card,
+#new-publication {
     padding: 2%;
     width: 30%;
 }
@@ -189,4 +190,9 @@
 
 #user-card .stats a:hover .number-stats {
     color: red;
+}
+
+#new-publication {
+    padding: 18px;
+    padding-left: 5px;
 }
