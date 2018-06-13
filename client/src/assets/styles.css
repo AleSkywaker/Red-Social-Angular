@@ -196,3 +196,10 @@
     padding: 18px;
     padding-left: 5px;
 }
+
+
+/* Timeline */
+
+#publications {
+    min-height: 500px;
+}
