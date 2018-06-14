@@ -22,6 +22,12 @@ export class PublicationService {
 
     return this._http.post(this.url + '/publicar', params, { headers: headers })
   }
+  getPublications(token, page = 1): Observable<any> {
+    let headers = new HttpHeaders().set('Content-Type', 'application/json')
+      .set('authorization', token)
+
+    return this._http.get(this.url + '/publications/' + page, { headers: headers });
+  }
 
 
 }
