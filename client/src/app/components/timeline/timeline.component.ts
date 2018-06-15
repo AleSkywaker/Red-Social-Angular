@@ -18,7 +18,7 @@ export class TimelineComponent implements OnInit {
   public titulo: string;
   public url: string;
   public status: string;
-  public page;
+  public pages;
   public publications: Publication[];
   public total;
 
@@ -35,7 +35,7 @@ export class TimelineComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.getPublications(this.page);
+    this.getPublications(this.pages);
   }
 
   getPublications(page) {
