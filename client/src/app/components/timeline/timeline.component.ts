@@ -47,6 +47,10 @@ export class TimelineComponent implements OnInit {
           this.publications = response.publications;
           console.log(response);
           this.status = 'success';
+
+          if (page > this.pages) {
+            this._router.navigate(['/home'])
+          }
         } else {
           this.status = "error"
         }
