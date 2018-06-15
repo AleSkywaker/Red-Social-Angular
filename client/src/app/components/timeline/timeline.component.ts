@@ -19,6 +19,8 @@ export class TimelineComponent implements OnInit {
   public url: string;
   public status: string;
   public page;
+  public publications: Publication[];
+  public total;
 
   constructor(
     private _route: ActivatedRoute,
@@ -39,8 +41,15 @@ export class TimelineComponent implements OnInit {
   getPublications(page) {
     this._publicationService.getPublications(this.token, page).subscribe(
       response => {
-        console.log(response);
-        this.status = 'success';
+        if (response.publications) {
+          this.total = response.total_items;
+          this.pages = response.pages;
+          this.publications = response.publications;
+          console.log(response);
+          this.status = 'success';
+        } else {
+          this.status = "error"
+        }
       }, error => {
         var errorMessage = <any>error;
         console.log(errorMessage);
