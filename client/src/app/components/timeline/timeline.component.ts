@@ -19,8 +19,10 @@ export class TimelineComponent implements OnInit {
   public url: string;
   public status: string;
   public pages;
+  public page;
   public publications: Publication[];
   public total;
+  public itemsPerPage;
 
   constructor(
     private _route: ActivatedRoute,
@@ -44,6 +46,7 @@ export class TimelineComponent implements OnInit {
         if (response.publications) {
           this.total = response.total_items;
           this.pages = response.pages;
+          this.itemsPerPage = response.items_per_page;
           this.publications = response.publications;
           console.log(response);
           this.status = 'success';
@@ -71,5 +74,13 @@ export class TimelineComponent implements OnInit {
       }
     )
   }
-
+  public noMore = false;
+  viewMore() {
+    if (this.publications.length == this.total) {
+      this.noMore = true;
+    } else {
+      this.page += 1;
+    }
+    this.getPublications(this.page, true)
+  }
 }
