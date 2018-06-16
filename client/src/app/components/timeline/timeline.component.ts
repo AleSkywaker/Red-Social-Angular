@@ -38,7 +38,7 @@ export class TimelineComponent implements OnInit {
     this.getPublications(this.pages);
   }
 
-  getPublications(page) {
+  getPublications(page, adding = false) {
     this._publicationService.getPublications(this.token, page).subscribe(
       response => {
         if (response.publications) {
@@ -47,6 +47,14 @@ export class TimelineComponent implements OnInit {
           this.publications = response.publications;
           console.log(response);
           this.status = 'success';
+
+          if (!adding) {
+            this.publications = response.publications;
+          } else {
+            let arrayA = this.publications;
+            let arrayB = response.publications;
+            this.publications = arrayA.concat(arrayB);
+          }
 
           if (page > this.pages) {
             this._router.navigate(['/home'])
@@ -63,4 +71,5 @@ export class TimelineComponent implements OnInit {
       }
     )
   }
+
 }
