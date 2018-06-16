@@ -81,7 +81,8 @@
 
 /* GENTE */
 
-.item-user .image-user {
+.item-user .image-user,
+.item-publication .image-user {
     width: 55px;
     height: 55px;
     border-radius: 100px;
@@ -89,12 +90,14 @@
     margin-right: 20px;
 }
 
-.item-user .image-user img {
+.item-user .image-user img,
+.item-publication .image-user img {
     height: auto;
     width: 150px;
 }
 
-.item-user .user-name {
+.item-user .user-name,
+.item-publication .user-name {
     margin-top: 3px;
 }
 
@@ -202,4 +205,8 @@
 
 #publications {
     min-height: 500px;
+}
+
+.publication-text {
+    font-weight: bold;
 }
