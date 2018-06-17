@@ -13,16 +13,16 @@ import { PublicationService } from './../../services/publication.service';
 
 export class TimelineComponent implements OnInit {
 
+  public titulo: string;
   public identity;
   public token;
-  public titulo: string;
   public url: string;
   public status: string;
-  public pages;
   public page;
-  public publications: Publication[];
   public total;
+  public pages;
   public itemsPerPage;
+  public publications: Publication[];
 
   constructor(
     private _route: ActivatedRoute,
@@ -34,10 +34,11 @@ export class TimelineComponent implements OnInit {
     this.identity = this._userService.getIdentity();
     this.token = this._userService.getToken();
     this.url = GLOBAL.url;
+    // this.page = 1;
   }
 
   ngOnInit() {
-    this.getPublications(this.pages);
+    this.getPublications(this.page);
   }
 
   getPublications(page, adding = false) {
@@ -46,8 +47,8 @@ export class TimelineComponent implements OnInit {
         if (response.publications) {
           this.total = response.total_items;
           this.pages = response.pages;
+          this.page = response.page;
           this.itemsPerPage = response.items_per_page;
-          this.publications = response.publications;
           console.log(response);
           this.status = 'success';
 
@@ -57,10 +58,12 @@ export class TimelineComponent implements OnInit {
             let arrayA = this.publications;
             let arrayB = response.publications;
             this.publications = arrayA.concat(arrayB);
+
+            $("html, body").animate({ scrollTop: $('body').prop('scrollHeight') }, 500)
           }
 
           if (page > this.pages) {
-            this._router.navigate(['/home'])
+            // this._router.navigate(['/home'])
           }
         } else {
           this.status = "error"
@@ -76,10 +79,9 @@ export class TimelineComponent implements OnInit {
   }
   public noMore = false;
   viewMore() {
-    if (this.publications.length == this.total) {
+    this.page++;
+    if (this.page == this.pages) {
       this.noMore = true;
-    } else {
-      this.page += 1;
     }
     this.getPublications(this.page, true)
   }
