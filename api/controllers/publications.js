@@ -52,9 +52,10 @@ function getPublications(req, res) {
 
         let followsClean = []
         follows.forEach((follow) => {
-            followsClean.push(follow.followed)
-        })
-
+                followsClean.push(follow.followed)
+            })
+            //mostrar mis porpias publicaciones
+        followsClean.push(req.user.sub);
         Publication.find({
                 user: {
                     "$in": followsClean
