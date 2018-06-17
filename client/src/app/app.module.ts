@@ -13,6 +13,7 @@ import { UserEditComponent } from './components/user-edit/user-edit.component';
 import { UserComponent } from './components/users/users.component';
 import { SidebarComponent } from './components/sidebar/sidebar.component';
 import { TimelineComponent } from './components/timeline/timeline.component';
+import { MomentModule } from 'angular2-moment';
 
 @NgModule({
   declarations: [
@@ -25,7 +26,7 @@ import { TimelineComponent } from './components/timeline/timeline.component';
     SidebarComponent,
     TimelineComponent
   ],
-  imports: [BrowserModule, FormsModule, routing, HttpClientModule],
+  imports: [BrowserModule, FormsModule, routing, HttpClientModule, MomentModule],
   providers: [appRoutingProviders],
   bootstrap: [AppComponent]
 })
