@@ -67,7 +67,7 @@
     </div>
 
 
-    <form #newPubForm="ngForm" (ngSubmit)="onSubmit(newPubForm)" class="col-md-12">
+    <form #newPubForm="ngForm" (ngSubmit)="onSubmit(newPubForm);sendPublication($event)" class="col-md-12">
         <p>
             <label>¿Que esta pensando?</label>
             <textarea name="text" #text="ngModel" [(ngModel)]="publication.text" class="form-control" required>
