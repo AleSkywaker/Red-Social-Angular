@@ -60,7 +60,7 @@ function getPublications(req, res) {
                 user: {
                     "$in": followsClean
                 }
-            }).sort('created_at').populate('user')
+            }).sort('-create_at').populate('user')
             .paginate(page, itemsPerPage, (err, publications, total) => {
                 if (err) return res.status(500).send({
                     message: "Error al devolver publicaciones"
