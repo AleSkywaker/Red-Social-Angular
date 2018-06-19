@@ -30,7 +30,8 @@ export class ProfileComponent implements OnInit {
   ) {
     this.titulo = "Profile";
     this.url = GLOBAL.url;
-
+    this.identity = this._userService.getIdentity();
+    this.token = this._userService.getToken();
   }
   ngOnInit() { }
 }
