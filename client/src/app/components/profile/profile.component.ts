@@ -3,8 +3,8 @@ import { ActivatedRoute, Params, Router } from "@angular/router";
 import { User } from '../../models/user'
 import { Follow } from '../../models/follow'
 import { GLOBAL } from '../../services/global';
-import { UserService } from './../../services/user.service';
 import { FollowService } from './../../services/follow.service';
+import { UserService } from '../../services/user.service';
 
 
 @Component({
@@ -22,7 +22,12 @@ export class ProfileComponent implements OnInit {
   public stats;
   public url: String;
   public follow: Follow;
-  constructor() {
+  constructor(
+    private _route: ActivatedRoute,
+    private _router: Router,
+    private _userService: UserService,
+    private _followServie: FollowService
+  ) {
     this.titulo = "Profile";
     this.url = GLOBAL.url;
 
