@@ -15,10 +15,17 @@ import { FollowService } from './../../services/follow.service';
 
 export class ProfileComponent implements OnInit {
   public titulo: String;
+  public user: User;
+  public status: String;
+  public identity;
+  public token;
+  public stats;
   public url: String;
+  public follow: Follow;
   constructor() {
     this.titulo = "Profile";
     this.url = GLOBAL.url;
+
   }
   ngOnInit() { }
 }
