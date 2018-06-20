@@ -214,3 +214,10 @@
 .publication-text {
     font-weight: bold;
 }
+
+
+/*PERFILES*/
+
+#data-profile {
+    min-height: 500px
+}
