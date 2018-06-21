@@ -33,7 +33,41 @@ export class ProfileComponent implements OnInit {
     this.identity = this._userService.getIdentity();
     this.token = this._userService.getToken();
   }
-  ngOnInit() { }
+  ngOnInit() {
+    this.loadPage()
+  }
+  loadPage() {
+    this._route.params.subscribe(params => {
+      let id = params['id'];
+      this.getUser(id);
+      this.getCounter(id);
+    })
+  }
+
+  getUser(id) {
+    this._userService.getUser(id).subscribe(response => {
+      if (response.user) {
+        console.log("response", response);
+        this.user = response.user;
+
+      } else {
+        this.status = "error";
+      }
+    }, error => {
+      console.log(<any>error);
+      this._router.navigate(['/perfil', this.identity._id])
+    })
+  }
+
+  getCounter(id) {
+    this._userService.getCounter(id).subscribe(
+      response => {
+        console.log("stats", response)
+        this.stats = response
+      }, error => {
+        console.log(<any>error);
+      })
+  }
 }
 
 
