@@ -1,10 +1,10 @@
 <div class="col-lg-8">
     <h1 class="h1-strong">{{titulo}}</h1>
 
-    <div id="data-profile">
+    <div id="data-profile" *ngIf="user">
         <div class="avatar pull-left">
-            <img src="{{}}" *ngIf="">
-            <img src="{{}}" *ngIf="">
+            <img src="{{url + '/get-image/' + user.image}}" *ngIf="user.image" />
+            <img src="assets/images/user.png" *ngIf="!user.image" />
         </div>
     </div>
 </div>
