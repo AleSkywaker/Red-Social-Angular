@@ -27,7 +27,7 @@ export class ProfileComponent implements OnInit {
     private _route: ActivatedRoute,
     private _router: Router,
     private _userService: UserService,
-    private _followServie: FollowService
+    private _followService: FollowService
   ) {
     this.titulo = "Perfil";
     this.url = GLOBAL.url;
@@ -53,10 +53,16 @@ export class ProfileComponent implements OnInit {
         console.log("response", response);
         this.user = response.user;
 
-        if (response.following._id) {
+        if (response.following && response.following._id) {
           this.following = true;
         } else {
           this.following = false;
+        }
+
+        if (response.followed && response.followed._id) {
+          this.followed = true;
+        } else {
+          this.followed = false;
         }
 
       } else {
@@ -77,6 +83,27 @@ export class ProfileComponent implements OnInit {
         console.log(<any>error);
       })
   }
+
+  followUser(followed) {
+    var follow = new Follow("", this.identity._id, followed);
+    this._followService.addFollow(this.token, follow).subscribe(
+      response => {
+        this.following = true;
+      }, error => {
+        console.log(<any>error)
+      }
+    )
+  }
+  unFollowUser(followed) {
+    this._followService.deleteFollow(this.token, followed).subscribe(
+      response => {
+        this.following = false;
+      }, error => {
+        console.log(<any>error);
+      }
+    )
+  }
 }
+
 
 
