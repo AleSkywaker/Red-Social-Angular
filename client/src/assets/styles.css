@@ -239,6 +239,10 @@
     margin-top: 20px;
 }
 
+#data-profile .user-name .label {
+    margin-bottom: 15px;
+}
+
 #data-profile .user-name .name {
     font-size: 26px;
     font-weight: bold;
