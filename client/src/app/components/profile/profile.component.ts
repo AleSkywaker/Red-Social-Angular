@@ -28,7 +28,7 @@ export class ProfileComponent implements OnInit {
     private _userService: UserService,
     private _followServie: FollowService
   ) {
-    this.titulo = "Profile";
+    this.titulo = "Perfil";
     this.url = GLOBAL.url;
     this.identity = this._userService.getIdentity();
     this.token = this._userService.getToken();
