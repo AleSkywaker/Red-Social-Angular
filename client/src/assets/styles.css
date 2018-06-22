@@ -219,5 +219,34 @@
 /*PERFILES*/
 
 #data-profile {
-    min-height: 500px
+    min-height: 500px;
+    text-align: center;
+}
+
+#data-profile .avatar {
+    width: 135px;
+    height: 135px;
+    border-radius: 400px;
+    overflow: hidden;
+    margin-right: 20px;
+}
+
+#data-profile .avatar img {
+    width: 110%;
+}
+
+#data-profile .user-name {
+    margin-top: 20px;
+}
+
+#data-profile .user-name .name {
+    font-size: 26px;
+    font-weight: bold;
+    color: #555;
+}
+
+#data-profile .user-name .nick {
+    font-size: 26px;
+    font-weight: normal;
+    color: gray;
 }
