@@ -103,6 +103,14 @@ export class ProfileComponent implements OnInit {
       }
     )
   }
+  public followUserOver;
+  mouseEnter(userId) {
+    this.followUserOver = userId
+  }
+  mouseLeave() {
+    this.followUserOver = 0;
+  }
+
 }
 
 
