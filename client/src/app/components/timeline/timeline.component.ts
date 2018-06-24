@@ -59,7 +59,7 @@ export class TimelineComponent implements OnInit {
             let arrayB = response.publications;
             this.publications = arrayA.concat(arrayB);
 
-            $("html, body").animate({ scrollTop: $('body').prop('scrollHeight') }, 500)
+            $("html, body").animate({ scrollTop: $('html').prop('scrollHeight') }, 500)
           }
 
           if (page > this.pages) {
