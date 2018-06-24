@@ -21,8 +21,9 @@
             <div class="follow pull-left">
                 <button class="btn btn-success" *ngIf="!following" (click)="followUser(user._id)">Seguir</button>
                 <button class="btn btn-primary" *ngIf="following" (click)="unFollowUser(user._id)" (mouseenter)="mouseEnter(user._id)" (mouseleave)="mouseLeave()" [class.btn-danger]="user._id == followUserOver">
-                <span *ngIf="user._id == followUserOver; else following">Dejar de seguir</span>
-                <ng-template #following>Siguiendo</ng-template></button>
+          <span *ngIf="user._id == followUserOver; else following">Dejar de seguir</span>
+          <ng-template #following>Siguiendo</ng-template>
+        </button>
             </div>
         </div>
         <div class="stats pull-left" *ngIf="stats">
@@ -45,7 +46,19 @@
                 </a>
             </div>
         </div>
+
+
+        <div class="col-lg-12 publications" *ngIf="user">
+            <h3>
+                <em>Publicaciones</em>
+            </h3>
+            <publications [user]="user._id"></publications>
+        </div>
+
     </div>
+
+
+
 </div>
 
 <sidebar></sidebar>
