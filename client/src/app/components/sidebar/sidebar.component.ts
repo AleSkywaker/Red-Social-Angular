@@ -4,12 +4,13 @@ import { GLOBAL } from '../../services/global';
 import { Publication } from '../../models/publication';
 import { PublicationService } from '../../services/publication.service';
 import { Router, ActivatedRoute, Params } from "@angular/router";
+import { UploadService } from '../../services/upload.service';
 
 
 @Component({
   selector: 'sidebar',
   templateUrl: './sidebar.component.html',
-  providers: [UserService, PublicationService]
+  providers: [UserService, PublicationService, UploadService]
 })
 
 export class SidebarComponent implements OnInit {
@@ -25,7 +26,8 @@ export class SidebarComponent implements OnInit {
     private _userService: UserService,
     private _publicationService: PublicationService,
     private _router: Router,
-    private _route: ActivatedRoute
+    private _route: ActivatedRoute,
+    private _uploadService: UploadService
   ) {
     this.titulo = "Sidebar";
     this.identity = this._userService.getIdentity();
@@ -46,9 +48,16 @@ export class SidebarComponent implements OnInit {
       response => {
         if (response.publication) {
           // this.publication = response.publication;
-          this.status = 'success';
-          form.reset();
-          this._router.navigate(['/timeline'])
+
+          //Subir imagen
+          this._uploadService.makeFileRequest(this.url + '/upload-image-pub/' + response.publication._id, [], this.filesToUpload, this.token, 'image')
+            .then((result: any) => {
+              this.publication.file = result.image;
+
+              this.status = 'success';
+              form.reset();
+              this._router.navigate(['/timeline']);
+            })
         } else {
           this.status = 'error';
         }
@@ -61,6 +70,12 @@ export class SidebarComponent implements OnInit {
       }
     )
   }
+  public filesToUpload: Array<File>;
+  fileChangeEvent(fileInput: any) {
+    console.log("imagen ", fileInput.target.files);
+    this.filesToUpload = <Array<File>>fileInput.target.files;
+  }
+
   //Output
   @Output() sended = new EventEmitter();
   sendPublication(event) {
