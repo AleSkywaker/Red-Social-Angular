@@ -1,4 +1,4 @@
-import { Component, OnInit } from "@angular/core";
+import { Component, OnInit, Input } from "@angular/core";
 import { ActivatedRoute, Params, Router } from "@angular/router";
 import { Publication } from './../../models/publication';
 import { GLOBAL } from '../../services/global';
@@ -23,6 +23,7 @@ export class PublicationsComponent implements OnInit {
   public pages;
   public itemsPerPage;
   public publications: Publication[];
+  @Input() user: string;
 
   constructor(
     private _route: ActivatedRoute,
@@ -38,11 +39,11 @@ export class PublicationsComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.getPublications(this.page);
+    this.getPublications(this.user, this.page);
   }
 
-  getPublications(page, adding = false) {
-    this._publicationService.getPublications(this.token, page).subscribe(
+  getPublications(user, page, adding = false) {
+    this._publicationService.getPublicationsUser(this.token, user, page).subscribe(
       response => {
         if (response.publications) {
           this.total = response.total_items;
@@ -59,7 +60,7 @@ export class PublicationsComponent implements OnInit {
             let arrayB = response.publications;
             this.publications = arrayA.concat(arrayB);
 
-            $("html, body").animate({ scrollTop: $('body').prop('scrollHeight') }, 500)
+            $("html, body").animate({ scrollTop: $('html').prop('scrollHeight') }, 500)
           }
 
           if (page > this.pages) {
@@ -83,6 +84,6 @@ export class PublicationsComponent implements OnInit {
     if (this.page == this.pages) {
       this.noMore = true;
     }
-    this.getPublications(this.page, true)
+    this.getPublications(this.user, this.page, true)
   }
 }
