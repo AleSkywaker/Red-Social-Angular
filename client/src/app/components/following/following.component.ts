@@ -68,7 +68,7 @@ export class FollowingComponent implements OnInit {
   }
 
   getFollows(user_id, page) {
-    this._followService.getFollowing(this.token, id, page).subscribe(
+    this._followService.getFollowing(this.token, user_id, page).subscribe(
       response => {
         if (!response.follows) {
           this.status = 'error';
