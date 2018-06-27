@@ -22,6 +22,11 @@ export class FollowService {
     deleteFollow(token, id): Observable<any> {
         let headers = new HttpHeaders().set('Content-type', 'application/json')
             .set('Authorization', token)
-        return this._http.delete(this.url + '/follow/' + id, {headers:headers})
+        return this._http.delete(this.url + '/follow/' + id, { headers: headers })
+    }
+    getFollowing(token, id = null, page = 1): Observable<any> {
+        let headers = new HttpHeaders().set('Content-type', 'application/json')
+            .set('Authorization', token)
+        return this._http.get(this.url + '/following/' + id + '/ ' + page, { headers: headers })
     }
 }
