@@ -31,6 +31,6 @@ export class FollowService {
         if (id != null) {
             url = this.url + '/following/' + id + '/ ' + page
         }
-        return this._http.get(url + '/following/' + id + '/ ' + page, { headers: headers })
+        return this._http.get(url, { headers: headers })
     }
 }
