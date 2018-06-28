@@ -73,7 +73,7 @@ export class FollowingComponent implements OnInit {
         if (!response.follows) {
           this.status = 'error';
         } else {
-          console.log(response.users);
+          console.log(response);
           // this.total = response.total;
           // this.users = response.users;
           // this.pages = response.pages;
