@@ -27,6 +27,10 @@ export class FollowService {
     getFollowing(token, id = null, page = 1): Observable<any> {
         let headers = new HttpHeaders().set('Content-type', 'application/json')
             .set('Authorization', token)
-        return this._http.get(this.url + '/following/' + id + '/ ' + page, { headers: headers })
+        let url = this.url + '/following/'
+        if (id != null) {
+            url = this.url + '/following/' + id + '/ ' + page
+        }
+        return this._http.get(url + '/following/' + id + '/ ' + page, { headers: headers })
     }
 }
