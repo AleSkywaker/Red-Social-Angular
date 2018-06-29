@@ -74,13 +74,14 @@ export class FollowingComponent implements OnInit {
           this.status = 'error';
         } else {
           console.log(response);
-          // this.total = response.total;
-          // this.users = response.users;
-          // this.pages = response.pages;
-          // this.follows = response.users_following;
-          // if (page > this.pages) {
-          //   this._router.navigate(['/usuarios', 1])
-          // }
+
+          this.total = response.total;
+          this.following = response.follows;
+          this.pages = response.pages;
+          this.follows = response.users_following;
+          if (page > this.pages) {
+            this._router.navigate(['/usuarios', 1])
+          }
 
         }
       }, error => {
