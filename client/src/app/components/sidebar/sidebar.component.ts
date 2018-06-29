@@ -39,6 +39,7 @@ export class SidebarComponent implements OnInit {
 
   ngOnInit() {
     console.log("Sidebar.componten ha sido cargado")
+    console.log("STATS", this.stats);
 
   }
 
