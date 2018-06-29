@@ -44,10 +44,10 @@
         <!-- PAGINATION -->
         <ul class="pagination pull-right">
             <li *ngIf='page > 1'>
-                <a [routerLink]="['/usuarios', prev_page]">Anterior</a>
+                <a [routerLink]="['/siguiendo', userPageId ,prev_page]">Anterior</a>
             </li>
             <li *ngIf='pages != page'>
-                <a [routerLink]="['/usuarios', next_page]">Siguiente</a>
+                <a [routerLink]="['/siguiendo', userPageId ,next_page]">Siguiente</a>
             </li>
         </ul>
     </div>
