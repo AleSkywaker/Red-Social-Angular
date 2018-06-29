@@ -27,6 +27,7 @@ export class FollowingComponent implements OnInit {
   public url;
   public follows;
   public following;
+  public userPageId;
 
   constructor(
     private _route: ActivatedRoute,
@@ -48,6 +49,7 @@ export class FollowingComponent implements OnInit {
   actualPage() {
     this._route.params.subscribe(params => {
       let user_id = params['id'];
+      this.userPageId = user_id;
       let page = +params['page'];
       this.page = page;
 
