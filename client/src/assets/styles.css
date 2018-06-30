@@ -10,11 +10,15 @@
     text-decoration-line: underline;
     text-decoration-style: solid;
     text-decoration-color: black;
+    color: #1d6d4a;
+    /* color: #b8fda5; */
+    /* color: #c8feb9; */
 }
 
 .active {
-    background-color: #ab0a0a;
-    border-bottom: #eee 2px solid;
+    background-color: #00bf8f !important;
+    /* background-color: #ab0a0a; */
+    /* border-bottom: #eee 2px solid; */
 }
 
 .pointer {
@@ -29,9 +33,15 @@
 }
 
 .navigation .navbar {
-    border-radius: 0px !important;
+    background: #00bf8f !important;
+    /* fallback for old browsers */
+    background: -webkit-linear-gradient(to right, #001510, #00bf8f) !important;
+    /* Chrome 10-25, Safari 5.1-6 */
+    background: linear-gradient(to right, #001510, #00bf8f) !important;
+    /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+    /* border-radius: 0px !important;
     background-color: #bd2020 !important;
-    border: none;
+    border: none; */
 }
 
 .navigation .navbar * {
@@ -40,7 +50,8 @@
 
 .navigation .navbar a:hover {
     color: white !important;
-    background-color: #ab0a0a !important;
+    background-color: #00bf8f !important;
+    /* background-color: #ab0a0a !important; */
 }
 
 .navigation .navbar .dropdown-menu * {
@@ -55,7 +66,8 @@
 .navbar-default .navbar-nav>.open>a,
 .navbar-default .navbar-nav>.open>a:focus,
 .navbar-default .navbar-nav>.open>a:hover {
-    background-color: #ab0a0a !important;
+    background-color: #00bf8f !important;
+    /* background-color: #ab0a0a !important; */
 }
 
 .navigation .avatar {
@@ -125,6 +137,8 @@
 #new-publication {
     padding: 2%;
     width: 30%;
+    -webkit-box-shadow: 5px 5px 19px 1px rgba(87, 255, 210, 0.78);
+    box-shadow: 5px 5px 19px 1px rgba(87, 255, 210, 0.78);
 }
 
 #user-card .avatar {
@@ -275,4 +289,14 @@
 
 #data-profile .publications {
     margin-top: 40px;
+}
+
+#tarjeta {
+    -webkit-box-shadow: 5px 5px 19px 1px rgba(87, 255, 210, 0.78);
+    box-shadow: 5px 5px 19px 1px rgba(87, 255, 210, 0.78);
+}
+
+.imagenTemporal {
+    height: auto;
+    width: 150px;
 }
