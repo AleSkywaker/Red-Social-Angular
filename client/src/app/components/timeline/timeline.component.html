@@ -3,7 +3,7 @@
 
     <div id="publications">
         <div *ngFor="let publication of publications" class="item-publication">
-            <div class="panel panel-default">
+            <div class="panel panel-default" id="tarjeta">
                 <div class="panel-body">
                     <div class="image-user pull-left">
                         <a href="">
@@ -54,7 +54,7 @@
                         <button class="btn btn-warning pull-right" (click)="showThisImage(publication._id)" *ngIf="showImage != publication._id">
                             <span class="glyphicon glyphicon-picture"></span>
                         </button>
-                        <button class="btn btn-danger pull-right" (click)="hideThisImage(publication._id)" *ngIf="showImage == publication._id">
+                        <button class="btn btn-info pull-right" (click)="hideThisImage(publication._id)" *ngIf="showImage == publication._id">
                             <span class="glyphicon glyphicon-remove-circle"></span>
                         </button>
                     </div>
