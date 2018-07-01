@@ -35,7 +35,7 @@ export class FollowingComponent implements OnInit {
     private _userService: UserService,
     private _followService: FollowService
   ) {
-    this.titulo = "Siguiendo";
+    this.titulo = "Usuarios seguido por ";
     this.identity = this._userService.getIdentity();
     this.token = this._userService.getToken();
     this.url = GLOBAL.url;
@@ -65,7 +65,7 @@ export class FollowingComponent implements OnInit {
         this.prev_page <= 0 ? this.prev_page = 1 : this.prev_page;
       }
       //Devolver listado de usuarios
-      this.getFollows(user_id, page);
+      this.getUser(user_id, page);
     })
   }
 
@@ -93,6 +93,23 @@ export class FollowingComponent implements OnInit {
         if (errorMessage != null) {
           this.status = 'error';
         }
+      }
+    )
+  }
+  public user: User;
+  getUser(user_id, page) {
+    this._userService.getUser(user_id).subscribe(
+      response => {
+        if (response.user) {
+          this.user = response.user;
+          //Devolver listado de usuarios
+          this.getFollows(user_id, page);
+        } else {
+          this._router.navigate(['/home'])
+        }
+      }, error => {
+        var errorMessage = <any>error;
+        console.log(errorMessage);
       }
     )
   }
