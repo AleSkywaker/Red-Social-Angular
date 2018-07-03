@@ -26,7 +26,7 @@ export class FollowedComponent implements OnInit {
   public users: Array<User>;
   public url;
   public follows;
-  public following;
+  public followed;
   public userPageId;
 
   constructor(
@@ -78,7 +78,7 @@ export class FollowedComponent implements OnInit {
           console.log(response);
 
           this.total = response.total;
-          this.following = response.follows;
+          this.followed = response.follows;
           this.pages = response.pages;
           this.follows = response.users_following;
           if (page > this.pages) {
