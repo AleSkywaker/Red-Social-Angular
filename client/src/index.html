@@ -3,7 +3,7 @@
 
 <head>
     <meta charset="utf-8">
-    <title>Client</title>
+    <title></title>
     <base href="/">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp" crossorigin="anonymous">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -19,5 +19,17 @@
 <body>
     <app-root></app-root>
 </body>
+<script language='JavaScript'>
+    var txt = "Bienvenido a la Red Social de Alex...  ";
+    var espera = 300;
+    var refresco = null;
+
+    function rotulo_title() {
+        document.title = txt;
+        txt = txt.substring(1, txt.length) + txt.charAt(0);
+        refresco = setTimeout("rotulo_title()", espera);
+    }
+    rotulo_title();
+</script>
 
 </html>
