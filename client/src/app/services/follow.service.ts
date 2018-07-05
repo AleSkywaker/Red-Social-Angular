@@ -38,7 +38,7 @@ export class FollowService {
             .set('Authorization', token)
         let url = this.url + '/followed/'
         if (id != null) {
-            url = this.url + '/followed/' + id + '/ ' + page
+            url = this.url + '/followed/' + id + '/' + page
         }
         return this._http.get(url, { headers: headers })
     }
