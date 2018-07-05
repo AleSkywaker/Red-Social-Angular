@@ -1,9 +1,9 @@
 <div class="col-lg-8">
     <h1 class="h1-strong">{{titulo}}</h1>
-    <div id="data-profile" *ngIf="user">
+    <div id="data-profile" class="panel panel-default" *ngIf="user">
         <div class="avatar pull-left">
-            <img src="{{url + '/get-image/' + user.image}}" *ngIf="user.image" />
-            <img src="assets/images/ninja.png" *ngIf="!user.image" />
+            <img id="imagenAvatar" src="{{url + '/get-image/' + user.image}}" *ngIf="user.image" />
+            <img id="imagenAvatar" src="assets/images/ninja.png" *ngIf="!user.image" />
         </div>
         <div class="user-name pull-left">
             <div class="label label-default pull-left" *ngIf="followed">
@@ -46,16 +46,16 @@
                 </a>
             </div>
         </div>
-
-
-        <div class="col-lg-12 publications" *ngIf="user">
-            <h3>
-                <em>Publicaciones</em>
-            </h3>
-            <publications [user]="user._id"></publications>
-        </div>
-
     </div>
+
+
+    <div class="col-lg-12 publications" *ngIf="user">
+        <h3>
+            <em>Publicaciones</em>
+        </h3>
+        <publications [user]="user._id"></publications>
+    </div>
+
 
 
 
