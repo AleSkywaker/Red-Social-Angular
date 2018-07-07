@@ -20,7 +20,8 @@ export class HomeComponent implements OnInit {
     this.quotes = [
       {
         "quote": "\"En un mundo conectado",
-        "source": "el individuo vive mas y mejor\""
+        "source": "el individuo es mas fuerte",
+        "blas": "y vive mejor\""
       },
       {
         "quote": "\"Trabaja",
@@ -52,7 +53,7 @@ export class HomeComponent implements OnInit {
         "source": "es aquello que no intentas\""
       },
       {
-        "quote": "\"Hazlo,",
+        "quote": "\"Hazlo",
         "source": "y si te da miedo,",
         "blas": "hazlo con miedo\""
       },
