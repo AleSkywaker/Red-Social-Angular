@@ -2,8 +2,10 @@ import { BrowserModule } from "@angular/platform-browser";
 import { NgModule } from "@angular/core";
 import { routing, appRoutingProviders } from "./app.routing";
 import { FormsModule } from "@angular/forms";
-// import { HttpModule } from "@angular/http";
 import { HttpClientModule } from "@angular/common/http";
+
+// Modulo Custom
+import { MessagesModule } from './messages/messages.module';
 
 import { AppComponent } from "./app.component";
 import { LoginComponent } from "../app/components/login/login.component";
@@ -34,7 +36,7 @@ import { FollowedComponent } from './components/followed/followed.component';
     FollowingComponent,
     FollowedComponent
   ],
-  imports: [BrowserModule, FormsModule, routing, HttpClientModule, MomentModule],
+  imports: [BrowserModule, FormsModule, routing, HttpClientModule, MomentModule, MessagesModule],
   providers: [appRoutingProviders],
   bootstrap: [AppComponent]
 })
