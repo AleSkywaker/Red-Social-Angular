@@ -14,6 +14,12 @@ import { GLOBAL } from '../../../services/global';
 
 export class AddComponent implements OnInit {
   public titulo: String;
+  public message: Message;
+  public identity;
+  public token;
+  public url: string;
+  public status: string;
+  public follows;
 
   constructor(
     private _route: ActivatedRoute,
