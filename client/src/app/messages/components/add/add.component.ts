@@ -1,8 +1,15 @@
 import { Component, OnInit, DoCheck } from '@angular/core';
+import { Router, ActivatedRoute, Params } from '@angular/router';
+import { Message } from '../../../models/message';
+import { MessageService } from '../../../services/message.service';
+import { Follow } from '../../../models/follow';
+import { FollowService } from './../../../services/follow.service';
+import { GLOBAL } from '../../../services/global';
 
 @Component({
   selector: 'add',
-  templateUrl: './add.component.html'
+  templateUrl: './add.component.html',
+  provider:[FollowService, MessageService]
 })
 
 export class AddComponent implements OnInit {
