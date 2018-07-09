@@ -15,7 +15,12 @@ import { GLOBAL } from '../../../services/global';
 export class AddComponent implements OnInit {
   public titulo: String;
 
-  constructor() {
+  constructor(
+    private _route: ActivatedRoute,
+    private _router: Router,
+    private _followService: FollowService,
+    private _messageService: MessageService
+  ) {
     this.titulo = "Enviar mensaje";
   }
   ngOnInit() {
