@@ -9,7 +9,7 @@ import { GLOBAL } from '../../../services/global';
 @Component({
   selector: 'add',
   templateUrl: './add.component.html',
-  provider:[FollowService, MessageService]
+  providers: [FollowService, MessageService]
 })
 
 export class AddComponent implements OnInit {
