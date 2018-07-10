@@ -28,19 +28,22 @@ export class RegisterComponent implements OnInit {
   }
 
   onSubmit(form) {
-    this._userService.registro(this.user).subscribe(
-      response => {
-        if (response.user && response.user._id) {
-          this.status = "success";
-          console.log(response.user);
-          form.reset();
-        } else {
-          this.status = "error";
-        }
-      },
-      error => {
-        console.log(<any>error);
-      }
-    );
+    console.log("form", form)
+    console.log("form value", form.value)
+    console.log("this user", this.user)
+    // this._userService.registro(this.user).subscribe(
+    //   response => {
+    //     if (response.user && response.user._id) {
+    //       this.status = "success";
+    //       console.log(response.user);
+    //       form.reset();
+    //     } else {
+    //       this.status = "error";
+    //     }
+    //   },
+    //   error => {
+    //     console.log(<any>error);
+    //   }
+    // );
   }
 }
