@@ -4,6 +4,8 @@ import { Message } from '../../../models/message';
 import { MessageService } from '../../../services/message.service';
 import { Follow } from '../../../models/follow';
 import { FollowService } from './../../../services/follow.service';
+import { User } from '../../../models/user';
+import { UserService } from './../../../services/user.service';
 import { GLOBAL } from '../../../services/global';
 
 @Component({
@@ -25,9 +27,14 @@ export class AddComponent implements OnInit {
     private _route: ActivatedRoute,
     private _router: Router,
     private _followService: FollowService,
-    private _messageService: MessageService
+    private _messageService: MessageService,
+    private _userService: UserService
   ) {
     this.titulo = "Enviar mensaje";
+    this.identity = this._userService.getIdentity();
+    this.token = this._userService.getToken();
+    this.url = GLOBAL.url;
+    this.message = new Message("", "", "", "", this.identity._id, "");
   }
   ngOnInit() {
     console.log("Componente add de mensajeria cargado");
