@@ -35,6 +35,11 @@
             <input type="password" name="password" #password="ngModel" [(ngModel)]="user.password" class="form-control" required/>
             <span *ngIf="!password.valid && password.touched">El nombre es obligatorio</span>
         </p>
+        <p>
+            <label>Repite contraseña</label>
+            <input type="password2" name="password2" #password2="ngModel" [(ngModel)]="user.password2" class="form-control" required/>
+            <span *ngIf="!password2.valid && password2.touched">El nombre es obligatorio</span>
+        </p>
         <input type="submit" value={{titulo}} class="btn btn-success" [disabled]="!registerForm.form.valid" />
     </form>
 
