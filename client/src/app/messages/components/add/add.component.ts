@@ -39,4 +39,13 @@ export class AddComponent implements OnInit {
   ngOnInit() {
     console.log("Componente add de mensajeria cargado");
   }
+  getMyFollows() {
+    this._followService.getMyFollows(this.token).subscribe(
+      response => {
+        this.follows = response.follows;
+      }, error => {
+        console.log(<any>error);
+      }
+    )
+  }
 }
