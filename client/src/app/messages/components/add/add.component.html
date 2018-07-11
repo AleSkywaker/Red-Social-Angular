@@ -7,8 +7,11 @@
             </p>
             <p>
                 <label>Mensaje</label>
-
+                <textarea name="text" #text="ngModel" [(ngModel)]="message.text" class="form-control" required></textarea>
+                <span *ngIf="!text.valid && text.touched">E  l mensaje es obligatorio </span>           
             </p>
+
+            <input type="submit" value="{{titulo}}" class="btn btn-success"/>   
 
      </form>
 </div>
