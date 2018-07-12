@@ -44,6 +44,7 @@ export class AddComponent implements OnInit {
     this._followService.getMyFollows(this.token).subscribe(
       response => {
         this.follows = response.follows;
+        console.log("follows", this.follows);
       }, error => {
         console.log(<any>error);
       }
