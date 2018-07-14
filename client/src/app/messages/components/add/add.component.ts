@@ -40,6 +40,21 @@ export class AddComponent implements OnInit {
     console.log("Componente add de mensajeria cargado");
     this.getMyFollows()
   }
+  onSubmit(form) {
+    console.log("message", this.message);
+    this._messageService.addMessage(this.token, this.message).subscribe(
+      response => {
+        if (response.message) {
+          this.status = 'success';
+          form.reset()
+        }
+      },
+      error => {
+        this.status = 'error';
+        console.log(<any>error);
+      }
+    )
+  }
   getMyFollows() {
     this._followService.getMyFollows(this.token).subscribe(
       response => {
