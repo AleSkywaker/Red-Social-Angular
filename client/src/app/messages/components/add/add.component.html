@@ -1,5 +1,13 @@
 <div class="col-lg-10">
     <h3>{{titulo}}</h3>
+
+    <div class="alert alert-success" *ngIf="status == 'success'">
+        Has enviado un correctamente, míralo en
+        <a [routerLink]="['enviados']">mensajes enviados</a>
+    </div>
+    <div class="alert alert-danger" *ngIf="status == 'error'">
+        No se ha podido enviar el mensaje.
+    </div>
     <form #formAdd="ngForm" (ngSubmit)="onSubmit(formAdd)">
         <p>
             <label>Para :</label>
