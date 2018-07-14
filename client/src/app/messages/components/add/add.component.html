@@ -3,7 +3,7 @@
 
     <div class="alert alert-success" *ngIf="status == 'success'">
         Has enviado un correctamente, míralo en
-        <a [routerLink]="['enviados']">mensajes enviados</a>
+        <a [routerLink]="['/mensajes/enviados']">mensajes enviados</a>
     </div>
     <div class="alert alert-danger" *ngIf="status == 'error'">
         No se ha podido enviar el mensaje.
