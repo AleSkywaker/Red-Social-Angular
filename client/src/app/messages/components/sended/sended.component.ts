@@ -30,16 +30,19 @@ export class SendedComponent implements OnInit {
     private _userService: UserService
   ) {
     this.titulo = "Mensajes enviados";
+    this.identity = this._userService.getIdentity();
+    this.token = this._userService.getToken();
+    this.url = GLOBAL.url;
   }
   ngOnInit() {
     console.log("Componente sended de mensajeria cargado");
-    this.getMessages
+    this.getMessages()
   }
   getMessages() {
     this._messageService.getMessagesEnviados(this.token, 1).subscribe(
       response => {
         if (response.messages) {
-          this.messages = response.messages
+          this.messages = response.messages;
         }
       }, error => {
         console.log(<any>error)
