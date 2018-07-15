@@ -10,7 +10,9 @@ import { GLOBAL } from '../../../services/global';
 
 @Component({
   selector: 'sended',
-  templateUrl: './sended.component.html'
+  templateUrl: './sended.component.html',
+  ,
+  providers: [FollowService, MessageService]
 })
 
 export class SendedComponent implements OnInit {
@@ -22,6 +24,8 @@ export class SendedComponent implements OnInit {
   public messages: Message[];
 
   constructor(
+    private _route: ActivatedRoute,
+    private _router: Router,
     private _followService: FollowService,
     private _messageService: MessageService,
     private _userService: UserService
@@ -30,8 +34,17 @@ export class SendedComponent implements OnInit {
   }
   ngOnInit() {
     console.log("Componente sended de mensajeria cargado");
+    this.getMessages
   }
-  getMessage() {
-
+  getMessages() {
+    this._messageService.getMessagesEnviados(this.token, 1).subscribe(
+      response => {
+        if (response.messages) {
+          this.messages = response.messages
+        }
+      }, error => {
+        consoel.log(<any>error)
+      }
+    )
   }
 }
