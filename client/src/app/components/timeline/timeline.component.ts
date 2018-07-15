@@ -31,7 +31,7 @@ export class TimelineComponent implements OnInit {
     private _userService: UserService,
     private _publicationService: PublicationService
   ) {
-    this.titulo = 'Timeline'
+    this.titulo = 'Publicaciones'
     this.identity = this._userService.getIdentity();
     this.token = this._userService.getToken();
     this.url = GLOBAL.url;
