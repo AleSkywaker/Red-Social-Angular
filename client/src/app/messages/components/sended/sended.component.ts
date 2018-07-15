@@ -11,7 +11,6 @@ import { GLOBAL } from '../../../services/global';
 @Component({
   selector: 'sended',
   templateUrl: './sended.component.html',
-  ,
   providers: [FollowService, MessageService]
 })
 
@@ -43,7 +42,7 @@ export class SendedComponent implements OnInit {
           this.messages = response.messages
         }
       }, error => {
-        consoel.log(<any>error)
+        console.log(<any>error)
       }
     )
   }
