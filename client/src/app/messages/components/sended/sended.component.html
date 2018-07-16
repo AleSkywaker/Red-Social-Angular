@@ -16,10 +16,10 @@
                     </div>
                     <div class="user-name pull-left">
                         <p class="name-surname">
-                            <a [routerLink]="[ '/perfil', follow.followed._id]">{{follow.followed.name + follow.followed.surname}}</a>
+                            <a [routerLink]="[ '/perfil', message.emiter._id]">{{message.emiter.name + message.emiter.surname}}</a>
                         </p>
                         <p class="nickname">
-                            {{follow.followed.nick}}
+                            {{message.emiter.nick}}
                         </p>
                     </div>
                     <!-- SEGUIR O DEJAR DE SEGUIR -->
