@@ -2,7 +2,7 @@
     <h3>{{titulo}}</h3>
 
     <!--listados de mensajes enviados-->
-    <div class="people" *ngIf="message">
+    <div class="people" *ngIf="messages">
 
         <!-- LISTADO -->
         <div *ngFor="let message of messages" class="item-user">
@@ -10,8 +10,8 @@
                 <div class="panel-body">
                     <div class="image-user pull-left">
                         <a href="">
-                            <img src="{{url + '/get-image/' + follow.followed.image}}" *ngIf="follow.followed.image" />
-                            <img src="assets/images/ninja.png" class="avatar-default" *ngIf="!follow.followed.image" />
+                            <img src="{{url + '/get-image/' + message.emiter.image}}" *ngIf="message.emiter.image" />
+                            <img src="assets/images/ninja.png" class="avatar-default" *ngIf="!message.emiter.image" />
                         </a>
                     </div>
                     <div class="user-name pull-left">
