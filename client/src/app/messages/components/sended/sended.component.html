@@ -20,7 +20,7 @@
                             <span class="nickname">
                                 {{message.emiter.nick}}
                             </span> &nbsp;|&nbsp;
-                            <span class="date">
+                            <span class="date nickname">
                                 {{ (message.create_at | amFromUnix) | amLocale: 'es' | amTimeAgo}}
                             </span>
                         </p>
