@@ -22,6 +22,9 @@
                             </span> &nbsp;|&nbsp;
                             <span class="date nickname">
                                 {{ (message.create_at | amFromUnix) | amLocale: 'es' | amTimeAgo}}
+                            </span> &nbsp;|&nbsp;
+                            <span class="nickname">
+                                Enviado a <a [routerLink]="[ '/perfil', message.receiver._id]"> {{ message.receiver.name + ' ' + message.receiver.surname}}</a>
                             </span>
                         </p>
                         <p class="col-lg-12">
