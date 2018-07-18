@@ -21,6 +21,11 @@ export class SendedComponent implements OnInit {
   public url: string;
   public status: string;
   public messages: Message[];
+  public page;
+  public pages;
+  public total;
+  public next_page;
+  public prev_page;
 
   constructor(
     private _route: ActivatedRoute,
@@ -36,17 +41,39 @@ export class SendedComponent implements OnInit {
   }
   ngOnInit() {
     console.log("Componente sended de mensajeria cargado");
-    this.getMessages()
+ this.actualPage();
   }
-  getMessages() {
-    this._messageService.getMessagesEnviados(this.token, 1).subscribe(
+  getMessages(token, page) {
+    this._messageService.getMessagesEnviados(token, page).subscribe(
       response => {
         if (response.messages) {
           this.messages = response.messages;
+          this.total = response.total;
+          this.pages = response.pages;
         }
       }, error => {
         console.log(<any>error)
       }
     )
+  }
+  actualPage() {
+    this._route.params.subscribe(params => {
+      let page = +params['page'];
+      this.page = page;
+
+      if (!params['page']) {
+        page = 1;
+      }
+
+      if (!page) {
+        page = 1;
+      } else {
+        this.next_page = page + 1;
+        this.prev_page = page - 1;
+        this.prev_page <= 0 ? this.prev_page = 1 : this.prev_page;
+      }
+      //Devolver listado de usuarios
+      this.getMessages(this.token, this.page)
+    })
   }
 }
