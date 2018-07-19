@@ -15,6 +15,7 @@ const messagesRoutes: Routes = [
       { path: '', redirectTo: 'recibidos', pathMatch: 'full' },
       { path: 'enviar', component: AddComponent },
       { path: 'recibidos', component: ReceiverComponent },
+      { path: 'recibidos/:page', component: ReceiverComponent },
       { path: 'enviados', component: SendedComponent },
       { path: 'enviados/:page', component: SendedComponent }
     ]
