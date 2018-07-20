@@ -3,9 +3,9 @@ import { Router, ActivatedRoute, Params } from '@angular/router';
 import { Message } from '../../../models/message';
 import { MessageService } from '../../../services/message.service';
 import { Follow } from '../../../models/follow';
-import { FollowService } from './../../../services/follow.service';
+import { FollowService } from '../../../services/follow.service';
 import { User } from '../../../models/user';
-import { UserService } from './../../../services/user.service';
+import { UserService } from '../../../services/user.service';
 import { GLOBAL } from '../../../services/global';
 
 @Component({
