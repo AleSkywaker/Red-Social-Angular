@@ -8,9 +8,9 @@ import { HttpClientModule } from "@angular/common/http";
 import { MessagesModule } from './messages/messages.module';
 
 import { AppComponent } from "./app.component";
-import { LoginComponent } from "../app/components/login/login.component";
-import { RegisterComponent } from "../app/components/register/register.component";
-import { HomeComponent } from "../app/components/home/home.component";
+import { LoginComponent } from "./components/login/login.component";
+import { RegisterComponent } from "./components/register/register.component";
+import { HomeComponent } from "./components/home/home.component";
 import { UserEditComponent } from './components/user-edit/user-edit.component';
 import { UserComponent } from './components/users/users.component';
 import { SidebarComponent } from './components/sidebar/sidebar.component';
