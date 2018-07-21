@@ -10,7 +10,7 @@ import { MessagesRoutingModule } from './messages.routing';
 //Componentes
 import { MainComponent } from './components/main/main.component';
 import { AddComponent } from './components/add/add.component';
-import { ReceiverComponent } from './components/receiver/receiver.component';
+import { ReceivedComponent } from './components/received/received.component';
 import { SendedComponent } from './components/sended/sended.component';
 
 
@@ -18,7 +18,7 @@ import { SendedComponent } from './components/sended/sended.component';
   declarations: [
     MainComponent,
     AddComponent,
-    ReceiverComponent,
+    ReceivedComponent,
     SendedComponent
   ],
   imports: [
@@ -30,7 +30,7 @@ import { SendedComponent } from './components/sended/sended.component';
   exports: [
     MainComponent,
     AddComponent,
-    ReceiverComponent,
+    ReceivedComponent,
     SendedComponent
   ],
   providers: []
