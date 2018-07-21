@@ -1,9 +1,9 @@
 import { Component, OnInit, Input } from "@angular/core";
 import { ActivatedRoute, Params, Router } from "@angular/router";
-import { Publication } from './../../models/publication';
+import { Publication } from '../../models/publication';
 import { GLOBAL } from '../../services/global';
-import { UserService } from './../../services/user.service';
-import { PublicationService } from './../../services/publication.service';
+import { UserService } from '../../services/user.service';
+import { PublicationService } from '../../services/publication.service';
 
 @Component({
   selector: "publications",
