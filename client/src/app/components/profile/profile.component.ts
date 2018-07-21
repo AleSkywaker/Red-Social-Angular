@@ -3,7 +3,7 @@ import { ActivatedRoute, Params, Router } from "@angular/router";
 import { User } from '../../models/user'
 import { Follow } from '../../models/follow'
 import { GLOBAL } from '../../services/global';
-import { FollowService } from './../../services/follow.service';
+import { FollowService } from '../../services/follow.service';
 import { UserService } from '../../services/user.service';
 
 
