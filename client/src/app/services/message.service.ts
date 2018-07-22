@@ -19,7 +19,7 @@ export class MessageService {
     return this._http.post(this.url + '/guardar-message', params, { headers: headers })
   }
 
-  getMessages(token, page = 1): Observable<any> {
+  getMessagesReceived(token, page = 1): Observable<any> {
     let headers = new HttpHeaders().set('Content-type', 'application/json')
       .set('Authorization', token)
     return this._http.get(this.url + '/trae-message/' + page, { headers: headers })
