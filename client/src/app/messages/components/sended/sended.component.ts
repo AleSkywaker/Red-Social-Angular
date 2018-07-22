@@ -41,7 +41,7 @@ export class SendedComponent implements OnInit {
   }
   ngOnInit() {
     console.log("Componente sended de mensajeria cargado");
- this.actualPage();
+    this.actualPage();
   }
   getMessages(token, page) {
     this._messageService.getMessagesEnviados(token, page).subscribe(
