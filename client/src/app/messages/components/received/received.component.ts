@@ -34,27 +34,14 @@ export class ReceivedComponent implements OnInit {
     private _messageService: MessageService,
     private _userService: UserService
   ) {
-    this.titulo = "Mensajes enviados";
+    this.titulo = "Mensajes Recibidos";
     this.identity = this._userService.getIdentity();
     this.token = this._userService.getToken();
     this.url = GLOBAL.url;
   }
   ngOnInit() {
-    console.log("Componente sended de mensajeria cargado");
+    console.log("Received component cargado");
     this.actualPage();
-  }
-  getMessages(token, page) {
-    this._messageService.getMessagesEnviados(token, page).subscribe(
-      response => {
-        if (response.messages) {
-          this.messages = response.messages;
-          this.total = response.total;
-          this.pages = response.pages;
-        }
-      }, error => {
-        console.log(<any>error)
-      }
-    )
   }
   actualPage() {
     this._route.params.subscribe(params => {
@@ -70,10 +57,25 @@ export class ReceivedComponent implements OnInit {
       } else {
         this.next_page = page + 1;
         this.prev_page = page - 1;
-        this.prev_page <= 0 ? this.prev_page = 1 : this.prev_page;
+        if (this.prev_page <= 0) {
+          this.prev_page = 1
+        }
       }
       //Devolver listado de usuarios
       this.getMessages(this.token, this.page)
     })
+  }
+  getMessages(token, page) {
+    this._messageService.getMessagesReceived(token, page).subscribe(
+      response => {
+        if (response.messages) {
+          this.messages = response.messages;
+          this.total = response.total;
+          this.pages = response.pages;
+        }
+      }, error => {
+        console.log(<any>error)
+      }
+    )
   }
 }
