@@ -5,7 +5,8 @@ export class User {
     public surname: String,
     public nick: String,
     public password: String,
+    public password2: String,
     public role: String,
     public image: String
-  ) {}
+  ) { }
 }
