@@ -61,6 +61,7 @@ function saveUser(req, res) {
                         });
 
                         if (userStored) {
+                            userStored.password = ";)";
                             res.status(200).send({
                                 user: userStored
                             })
