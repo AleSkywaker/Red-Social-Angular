@@ -13,6 +13,7 @@ export class RegisterComponent implements OnInit {
   public titulo: string;
   public user: User;
   public status: String;
+  public errores: String;
 
   constructor(
     private _route: ActivatedRoute,
@@ -28,13 +29,16 @@ export class RegisterComponent implements OnInit {
   }
 
   onSubmit(form) {
-    console.log("this user", this.user)
     this._userService.registro(this.user).subscribe(
       response => {
         if (response.user && response.user._id) {
           this.status = "success";
           console.log("user");
           form.reset();
+        } else {
+          this.status = "error";
+          this.errores = response.message;
+          console.log("error", response.message);
         }
       },
       error => {
