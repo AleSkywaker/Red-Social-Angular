@@ -57,6 +57,11 @@ export class HomeComponent implements OnInit {
         "source": "y si te da miedo,",
         "blas": "hazlo con miedo\""
       },
+      {
+        "quote": "\"Be who you were",
+        "source": "created to be, and you will",
+        "blas": "set the world on fire.\""
+      },
     ]
   }
   ngOnInit() {
