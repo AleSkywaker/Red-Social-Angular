@@ -62,6 +62,11 @@ export class HomeComponent implements OnInit {
         "source": "created to be, and you will",
         "blas": "set the world on fire.\""
       },
+      {
+        "quote": "\"If you don't go after what you want, you'll never have it.",
+        "source": "If you don't ask, the answer is always no.",
+        "blas": "If you don't step forward, you're always in the same place.\""
+      }
     ]
   }
   ngOnInit() {
