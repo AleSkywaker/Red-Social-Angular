@@ -22,8 +22,8 @@ import { FollowingComponent } from './components/following/following.component'
 import { FollowedComponent } from './components/followed/followed.component';
 
 //Servicios
-import {UserService} from './services/user.service';
-import {UserGuard} from './services/user.guard';
+import { UserService } from './services/user.service';
+import { UserGuard } from './services/user.guard';
 
 @NgModule({
   declarations: [
