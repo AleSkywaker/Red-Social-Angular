@@ -66,9 +66,15 @@ export class HomeComponent implements OnInit {
         "quote": "\"If you don't go after what you want, you'll never have it.",
         "source": "If you don't ask, the answer is always no.",
         "blas": "If you don't step forward, you're always in the same place.\""
+      },
+      {
+        "quote": "\"The universe reveals its secrets",
+        "source": "to those who dare to follow",
+        "blas": "their hearts.\""
       }
     ]
   }
+
   ngOnInit() {
     this.random = this.quotes[Math.floor(Math.random() * this.quotes.length)];
     this.testhtml = this.random.quote
